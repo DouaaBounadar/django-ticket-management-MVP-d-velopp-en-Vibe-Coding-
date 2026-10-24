@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Gestion des Tickets IT{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <p class="text-uppercase text-secondary small fw-semibold mb-1">Vue d'ensemble</p>
+        <h1 class="h2 mb-0">Dashboard</h1>
+    </div>
+    <a href="{% url 'ticket_list' %}" class="btn btn-outline-primary"><i class="bi bi-arrow-right me-1" aria-hidden="true"></i>Voir les tickets</a>
+</div>
+<div class="row g-3">
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card h-100 shadow-sm border-0 border-start border-4 border-primary">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div><h2 class="h6 text-secondary mb-2">Total des tickets</h2><p class="display-6 fw-semibold mb-0">{{ total_tickets }}</p></div>
+                <i class="bi bi-ticket-detailed text-primary fs-1" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card h-100 shadow-sm border-0 border-start border-4 border-info">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div><h2 class="h6 text-secondary mb-2">Nouveaux</h2><p class="display-6 fw-semibold mb-0">{{ tickets_nouvelles }}</p></div>
+                <i class="bi bi-inbox text-info fs-1" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card h-100 shadow-sm border-0 border-start border-4 border-warning">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div><h2 class="h6 text-secondary mb-2">En cours</h2><p class="display-6 fw-semibold mb-0">{{ tickets_en_cours }}</p></div>
+                <i class="bi bi-hourglass-split text-warning fs-1" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card h-100 shadow-sm border-0 border-start border-4 border-success">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div><h2 class="h6 text-secondary mb-2">Résolus</h2><p class="display-6 fw-semibold mb-0">{{ tickets_resolues }}</p></div>
+                <i class="bi bi-check-circle text-success fs-1" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white py-3 d-flex align-items-center justify-content-between">
+                <h1 class="h5 mb-0"><i class="bi bi-ticket-detailed me-2 text-primary" aria-hidden="true"></i>{{ object.titre }}</h1>
+                <span class="badge {% if object.statut == 'Nouvelle' %}bg-primary{% elif object.statut == 'En cours' %}bg-warning text-dark{% else %}bg-success{% endif %}">{{ object.get_statut_display }}</span>
+            </div>
+            <div class="card-body p-4">
+                <p class="mb-3">{{ object.description }}</p>
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">Créateur</dt>
+                    <dd class="col-sm-9">{{ object.cree_par }}</dd>
+                    <dt class="col-sm-3">Statut</dt>
+                    <dd class="col-sm-9">{{ object.get_statut_display }}</dd>
+                    <dt class="col-sm-3">Assigné à</dt>
+                    <dd class="col-sm-9">{{ object.assigne_a|default:'Non assigné' }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h2 class="h6 mb-0"><i class="bi bi-pencil-square me-2 text-primary" aria-hidden="true"></i>Mettre à jour le ticket</h2>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1" aria-hidden="true"></i>Enregistrer</button>
+                    <a href="{% url 'ticket_list' %}" class="btn btn-outline-secondary ms-2">Retour</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
